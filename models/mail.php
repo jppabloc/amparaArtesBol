@@ -1,10 +1,8 @@
 <?php
-//   $nombre = $_POST['nom'];
-//   echo ($nombre);
-$nombre = 'jPablox';
+  $nombre = $_POST['nom'];
   $cod = random_int(1000, 9999);
   
-    $destino = 'jcalderonp@fcpn.edu.bo';
+    $destino = $_POST['correo'];
     $asunto = 'Correo de verificación';
 
     $mensaje = '
@@ -85,7 +83,7 @@ $nombre = 'jPablox';
                 <div class="email-body">
                     <h2>Hola, '.$nombre.'</h2>
                     <p>Gracias por registrarte en nuestro sitio ampara Artes Bolivia. Por favor, haz clic en el botón de abajo para verificar tu dirección de correo electrónico.</p>
-                    <a href="verificar.php" class="verify-btn">Verificar correo</a>
+                    <a href="http://localhost/amparaArtesBol/controllers/verificar.php?email='.$destino.'" class="verify-btn">Verificar correo</a>
                     <p>Si no solicitaste este correo, simplemente ignóralo.</p>
                 </div>
                 <div class="email-footer">
@@ -102,11 +100,8 @@ $nombre = 'jPablox';
     $headers .= 'From: '.$destino.' ';
     $headers .= 'Ampara Artes Bolivia' . "\r\n";
 
+    $enviado = false;
 if(mail($destino, $asunto, $mensaje, $headers)) 
-    echo 'Correo enviado';
-else
-    echo 'Error al enviar correo';
-    echo '<br>';
-    echo $cod;
+  $enviado = true;
     
 ?>
